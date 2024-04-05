@@ -1,62 +1,111 @@
 
+
 <template>
-    <div>
-      <h2>Lista de Pasteles</h2>
-      <ul>
-        <li v-for="pastel in pasteles" :key="pastel.id">
-          {{ pastel.nombre }}
-          
-          <button >Asignar Ingredientes</button>
+  <div class="container">
       
+   
+    <div class="card">
+      <div class="card-header">
+        Pasteles
+      </div>
+      <div class="card-body">
+       <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+           
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="pastel in pasteles" :key="pastel.id_pastel">
+            <td>{{ pastel.id_pastel }}</td>
+            <td>{{ pastel.nombre }}</td>
+            <td>{{ pastel.descripcion }}</td>
+            
+            <td>
+
+              <div class="btn-group" role="group" aria-label="">
+                
+               
+
+                <router-link :to="{name:'seleccionaringredientes', params:{id:pastel.id_pastel}}" class="btn btn-info">Seleccionar Ingredientes</router-link>
+               
+              </div>
+              
+            </td>
+          </tr>
+          
+        </tbody>
+       </table>
 
 
-         
-        </li>
-      </ul>
+
+      </div>
+      
     </div>
-  </template>
-  
-  <script>
-  export default {
-    data(){
+
+
+
+</div>
+
+
+</template>
+
+<script>
+export default {
+data(){
 return {
-  pasteles:[]
+pasteles:[]
 }
 
-  },
-   created:function(){
-    this.consultarPasteles();
-   },
+},
+ created:function(){
+  this.consultarPasteles();
+ },
 
 
-   methods:{
+ methods:{
 consultarPasteles(){
-    console.log();
-    fetch('http://localhost/pasEcosaba/backend/?consultar_all')
-    .then(respuesta =>respuesta.json())
-    .then((datosRespuesta)=>{
+  fetch('http://localhost/pasEcosaba/backend/?consultar_all')
+  .then(respuesta =>respuesta.json())
+  .then((datosRespuesta)=>{
 
-  console.log(datosRespuesta);
+console.log(datosRespuesta);
 
 this.pasteles=[]  
 if(typeof datosRespuesta[0].success==='undefined')
 {
 this.pasteles=datosRespuesta;
 }
-   
-   
+ 
+ 
 } )
 
 .catch(console.log);
 },
 
 
-asignarIngredientes(idPastel) {
-      this.$router.push({ name: 'SeleccionarIngredientes', params: { idPastel } });
-    }
-  }
 
+borrarPastel(id){
+console.log(id);
+
+fetch('http://localhost/pasEcosaba/backend/?borrar='+id)
+  .then(respuesta =>respuesta.json())
+  .then((datosRespuesta)=>{
+
+console.log(datosRespuesta);
+window.location.href="ListarItems"
+ 
+} )
+
+.catch(console.log);
 
 
 }
-  </script>
+}
+}
+</script>
+

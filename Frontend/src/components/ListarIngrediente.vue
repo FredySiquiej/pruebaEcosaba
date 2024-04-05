@@ -20,7 +20,7 @@
           </thead>
           <tbody>
             <tr v-for="ingrediente in ingredientes" :key="ingrediente.id_ingrediente">
-              <td>{{ ingrediente.id_pastel }}</td>
+              <td>{{ ingrediente.id_ingrediente }}</td>
               <td>{{ ingrediente.nombre }}</td>
               <td>{{ ingrediente.descripcion }}</td>
               <td>{{ ingrediente.fecha_ingreso }}</td>

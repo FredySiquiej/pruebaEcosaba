@@ -7,7 +7,7 @@ import CrearIngrediente from '../components/CrearIngrediente.vue'
 import EditarIngrediente from '../components/EditarIngrediente.vue'
 import ListarIngrediente from '../components/ListarIngrediente.vue'
 import AsignarIngredientes from '../components/AsignarIngredientes.vue'
-//import SeleccionarIngredientes from '@/components/SeleccionarIngredientes.vue'
+import SeleccionarIngredientes from '@/components/SeleccionarIngredientes.vue'
 
 
 
@@ -63,13 +63,13 @@ const routes = [
     name: 'asignaringredientes',
     component: AsignarIngredientes
   },
-/*
+
   {
-    path: '/seleccionaringredientes',
+    path: '/seleccionaringredientes/:id',
     name: 'seleccionaringredientes',
     component: SeleccionarIngredientes
   },
-*/
+
   {
     path: '/about',
     name: 'about',
