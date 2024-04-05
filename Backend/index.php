@@ -171,6 +171,21 @@ if (isset($_GET["consultar_pi"])){
     else{  echo json_encode(["success"=>0]); }
 }
 
+if (isset($_GET["detalle"])){
+    $sqlpastelIngrediente = mysqli_query($conexionBD,"SELECT  i.nombre AS nombre_ingrediente, i.descripcion AS detalle_ingrediente, i.fecha_ingreso, i.fecha_vencimiento
+    FROM pastel p
+    INNER JOIN pastel_ingredientes pi ON p.id_pastel = pi.id_pastel
+    INNER JOIN ingrediente i ON pi.id_ingrediente = i.id_ingrediente
+    WHERE p.id_pastel =".$_GET["detalle"]);
+
+    if(mysqli_num_rows($sqlpastelIngrediente) > 0){
+        $pastelIngrediente = mysqli_fetch_all($sqlpastelIngrediente,MYSQLI_ASSOC);
+        echo json_encode($pastelIngrediente);
+        exit();
+    }
+    else{  echo json_encode(["success"=>0]); }
+}
+
 if (isset($_GET["consultar_pi_all"])){
     $sqlpastelIngrediente = mysqli_query($conexionBD,"SELECT * FROM pastel_ingredientes ");
     if(mysqli_num_rows($sqlpastelIngrediente) > 0){

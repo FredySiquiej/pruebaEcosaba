@@ -1,0 +1,14 @@
+Para  el Backend hecho en PHP: debe agregar en la raiz del servidor de esta manera http://localhost/pasEcosaba/backend/index.php
+primero en la raiz debe ir la Carpeta pasEcosaba, en seguida la carpeta Backend que contiene el archivo PHP, 
+
+esto debido aque se agregaron esas dos carpetas pasEcosaba y Backend para una mejor comprension de lo que se 
+utilizo en el desarrollo, por la misma razon se agrego en el codigo esa url  http://localhost/pasEcosaba/backend/.. para 
+consmir las apis.
+
+por ejemplo se utilizo :   fetch('http://localhost/pasEcosaba/backend/?consultar_all') para llamar la api de consulta
+
+
+Cualquier consulta estoy a la orden este numero telefonico
+Fredy Siquiej
+54620888
+

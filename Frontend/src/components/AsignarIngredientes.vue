@@ -31,8 +31,9 @@
                 
                
 
-                <router-link :to="{name:'seleccionaringredientes', params:{id:pastel.id_pastel}}" class="btn btn-info">Seleccionar Ingredientes</router-link>
-               
+                <router-link :to="{name:'seleccionaringredientes', params:{id:pastel.id_pastel}}" class="btn btn-success">Seleccionar Ingredientes</router-link>
+                <router-link :to="{name:'ConsultarPastel', params:{id:pastel.id_pastel}}" class="btn btn-warning">ir Detalle</router-link>
+
               </div>
               
             </td>

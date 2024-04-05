@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+
 import CrearItems from '../components/CrearItems.vue'
 import ListarItems from '../components/ListarItems.vue'
 import EditarItems from '../components/EditarItems.vue'
@@ -8,7 +9,7 @@ import EditarIngrediente from '../components/EditarIngrediente.vue'
 import ListarIngrediente from '../components/ListarIngrediente.vue'
 import AsignarIngredientes from '../components/AsignarIngredientes.vue'
 import SeleccionarIngredientes from '@/components/SeleccionarIngredientes.vue'
-
+import ConsultarPastel from '@/components/ConsultarPastel.vue'
 
 
 
@@ -69,6 +70,14 @@ const routes = [
     name: 'seleccionaringredientes',
     component: SeleccionarIngredientes
   },
+
+
+  {
+    path: '/consultarpastel/:id',
+    name: 'ConsultarPastel',
+    component: ConsultarPastel
+  },
+
 
   {
     path: '/about',
