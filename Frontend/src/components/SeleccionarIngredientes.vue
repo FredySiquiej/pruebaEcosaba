@@ -1,6 +1,8 @@
 <template>
    <div>
-        
+    <div v-if="mensajeExito" class="alert alert-success" role="alert">
+      ¡El elemento se agregó exitosamente!
+    </div>
         <div class="container">
             
             <div class="card">
@@ -68,7 +70,7 @@
   
                   <div class="btn-group" role="group" aria-label="">
                     
-                    <button type="submit" class="btn btn-success">Agregar</button>
+                    <button  class="btn btn-success" @click="agregarRegistro(this.$route.params.id,ingrediente.id_ingrediente)">Agregar</button>
   
                     
                     
@@ -98,6 +100,7 @@
 export default {
   data(){
 return {
+    mensajeExito: false,
 ingredientes:[],
   pastel:{}
 }
@@ -108,6 +111,37 @@ this.consultarIngredientes();
 
 },
 methods:{
+
+    agregarRegistro(idpastel, idingrediente){
+        console.log(idingrediente);
+        console.log(idpastel)
+
+        var datosEnviar ={id_pastel:idpastel, id_ingrediente:idingrediente}
+fetch('http://localhost/pasEcosaba/backend/?insertar_pi',{
+
+  method:"POST",
+  body:JSON.stringify(datosEnviar)
+  
+}  )
+
+
+.then(respuesta => respuesta.json())
+.then(datosRespuesta=>{
+
+  console.log(datosRespuesta);
+  this.mensajeExito = true;
+  setTimeout(() => {
+          this.mensajeExito = false; // Restablece a false después de un tiempo determinado
+        }, 3000);
+  
+})
+
+.catch(error => {
+        console.error('Error al agregar registro:', error);
+      });
+
+},
+
 
     consultarIngredientes(){
     fetch('http://localhost/pasEcosaba/backend/?consultar_ing_all')
@@ -147,28 +181,7 @@ this.pastel=datosRespuesta[0];
 
 
   }
-  ,actualizarRegistro(){
-
-    var datosEnviar ={id:this.$route.params.id,nombre:this.pastel.nombre, descripcion:this.pastel.descripcion, preparado_por:this.pastel.preparado_por, fecha_creacion:this.pastel.fecha_creacion, fecha_vencimiento:this.pastel.fecha_vencimiento}
-fetch('http://localhost/pasEcosaba/backend/?actualizar='+this.$route.params.id,{
-
-  method:"POST",
-  body:JSON.stringify(datosEnviar)
-}  )
-
-
-.then(respuesta => respuesta.json())
-.then((datosRespuesta=>{
-
-  console.log(datosRespuesta);
-  window.location.href='../listaritems'
-}))
-    
-
-
-
-
-  }
+  ,
 
 
 
